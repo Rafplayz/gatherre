@@ -1,7 +1,16 @@
 const updateInterval = setInterval(Update,100)
-let total: number;4
+let berries: number
+
+/* 
+REPLACE
+THIS
+*/
+berries = 1
+
+
 function gatherItems(): void{
     console.log("gatherItems received")
+    berries++
 }
 const gatherButton = new TimedButton(
     "Gather (timed)",
@@ -12,7 +21,7 @@ const gatherButton = new TimedButton(
 )
 gatherButton.assign("gatherButton")
 function Update(): void {
-    updateElement("main",`Total: ${total}`)
+    updateElement("main",`Berries: ${berries}`)
 }
 function updateElement(elementID: string,text: string) {
     let elem = document.getElementById(elementID)

@@ -10,7 +10,7 @@ class TimedButton extends Button {
         TimedButton.instances.push(this)
     }
     override click(buttonID: string = this.id): void|unknown {
-        let button = TimedButton.getTimedButtonById(buttonID)
+        const button = TimedButton.getTimedButtonById(buttonID)
         if(button == undefined) throw new Error()
         if (button.isIterating == false) button.isIterating = true
         else return

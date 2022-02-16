@@ -1,0 +1,4 @@
+interface Player {
+    berries: number;
+    
+}

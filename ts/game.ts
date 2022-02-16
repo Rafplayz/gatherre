@@ -1,14 +1,28 @@
-const updateInterval = setInterval(Update,100)
-const autosaveInterval = setInterval(save,60000)
+let updateInterval = setTimeout(Update,100)
+let saveTimeout = setTimeout(saveTimeoutHandler,14000)
 let player: Player;
+let saveDateCheck: number
+let updateDateCheck: number
+function saveTimeoutHandler() {
+    const currentDate = Date.now()
+    if(saveDateCheck === undefined) saveDateCheck = currentDate
+    if ((currentDate - saveDateCheck >= 14000)){
+        save();
+        console.clear();
+        console.log("saved")
+    }
+    clearTimeout(saveTimeout)
+    saveTimeout = setTimeout(saveTimeoutHandler,14000)
+}
 function getInitialPlayer() {
     return {
         berries: 0,
     }
 }
 function save() {
-    window.localStorage.setItem('player',JSON.stringify(player))
-    return JSON.stringify(player)
+    const storedPlayer = JSON.stringify(player)
+    window.localStorage.setItem('player',storedPlayer)
+    return storedPlayer
 }
 function load() {
     const localStoredPlayer = localStorage.getItem('player')
@@ -33,7 +47,13 @@ const gatherButton = new TimedButton(
 )
 gatherButton.assign("gatherButton")
 function Update(): void {
-    updateElement("main",`Berries: ${player.berries}`)
+    const currentDate = Date.now()
+    if(updateDateCheck === undefined) updateDateCheck = currentDate
+    if((currentDate - updateDateCheck >= 100)){
+        updateElement("main",`Berries: ${player.berries}`)
+    }
+    updateDateCheck = Date.now()
+    updateInterval = setTimeout(Update,100)
 }
 function updateElement(elementID: string,text: string): void {
     let elem = document.getElementById(elementID)

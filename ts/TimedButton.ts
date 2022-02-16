@@ -20,7 +20,7 @@ class TimedButton extends Button {
             let elem = this.progressbar
             let width = 1
             let i = 0
-            if (i != 1) {
+            if (i != 1) { // if there is a better way to do this please let me know
                 i = 1
                 function frame(button: TimedButton): void {
                     if (width >= 100) {

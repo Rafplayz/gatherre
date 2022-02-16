@@ -24,15 +24,16 @@ class Button {
         catch (err) { return err; }
         return button.effect
     }
-    assign(element: string|HTMLElement) {
-        let newElement: any = element;
-        // type guarding
+    assign(element: string|HTMLElement): HTMLElement {
+        let newElement: any = element; // has to be any or else below code doesn't compile
+
         if(typeof element == "string") newElement = document.getElementById(element)
         if(newElement == null) throw new Error()
-        // assigning values to the new element
+        
         newElement.onclick = () => this.click(this.id)
         newElement.innerText = this.title
         newElement.id = this.id
+
         this.assignedID = newElement.id
 
         return newElement

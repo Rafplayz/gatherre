@@ -1,9 +1,6 @@
 const updateInterval = setInterval(Update,100)
 let berries: number
-/* 
-REPLACE
-THIS
-*/
+// DEBUG: replace below
 berries = 1
 
 function gatherItems(): void{

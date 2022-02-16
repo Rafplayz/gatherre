@@ -1,12 +1,10 @@
 const updateInterval = setInterval(Update,100)
 let berries: number
-
 /* 
 REPLACE
 THIS
 */
 berries = 1
-
 
 function gatherItems(): void{
     console.log("gatherItems received")

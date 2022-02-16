@@ -3,8 +3,10 @@
     --background: rgb(30, 30, 36);
     --min-height-button: 50px;
     --min-width-button: 70px;
+    --error: rgb(140,50,50);
     color: lightgray;
     font-family:'Roboto', sans-serif !important;
+    overflow-y: hidden;
 }
 body {
     background-color: var(--background);
@@ -71,4 +73,16 @@ button.button:active {
 }
 .grid {
     display:grid;
+}
+.ErrorContainer {
+    position:absolute;
+    width:20%;
+    min-height:15%;
+}
+.errorpopup {
+    text-align:center;
+    background-color:rgb(140,50,50);
+    border: 2px solid rgb(160,80,80);
+    border-radius: 5px;
+    margin-bottom:10px;
 }

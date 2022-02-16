@@ -20,7 +20,10 @@ class Button {
     }
     click(buttonID: string = this.id): void {
         let button: Button = Button.getButtonById(buttonID);
+        try {
         button.effect()
+        }
+        catch(err){inGameErrorHandle(err)}
     }
     assign(element: string|HTMLElement): HTMLElement {
         let newElement: any = element; // has to be any or else below code doesn't compile

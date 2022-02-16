@@ -3,6 +3,27 @@ let saveTimeout = setTimeout(saveTimeoutHandler,14000)
 let player: Player;
 let saveDateCheck: number
 let updateDateCheck: number
+let errorNumber = 0
+function errorPopup(error: string|Error) {
+    errorNumber++;
+    const errorContainer = $(".ErrorContainer")
+    $(errorContainer).append($(`<div id="Error${errorNumber}" class="errorpopup"></div>`))
+    const newElement = $(`#Error${errorNumber}`)
+    if(typeof error != 'string') error = error.toString()
+    newElement.text(error)
+    .css({opacity:1})
+    setTimeout(function(){
+        newElement.fadeOut(2000,'linear',function(){
+            $(`#Error${errorNumber}`).remove()
+        })
+    },5000)
+    
+}
+function inGameErrorHandle(error: any) {
+    if(typeof error !== 'string') {console.log(error.toString());return}
+    console.log(error)
+    errorPopup(error)
+}
 function saveTimeoutHandler() {
     const currentDate = Date.now()
     if(saveDateCheck === undefined) saveDateCheck = currentDate

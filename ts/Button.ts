@@ -18,11 +18,9 @@ class Button {
         if(button == undefined) throw new Error()
         return <Button>button;
     }
-    click(buttonID: string = this.id) {
+    click(buttonID: string = this.id): void {
         let button: Button = Button.getButtonById(buttonID);
-        try { button.effect(); }
-        catch (err) { return err; }
-        return button.effect
+        button.effect()
     }
     assign(element: string|HTMLElement): HTMLElement {
         let newElement: any = element; // has to be any or else below code doesn't compile

@@ -29,7 +29,7 @@ class Button {
         // type guarding
         if(typeof element == "string") newElement = document.getElementById(element)
         if(newElement == null) throw new Error()
-        // assigning values to the new element.
+        // assigning values to the new element
         newElement.onclick = () => this.click(this.id)
         newElement.innerText = this.title
         newElement.id = this.id
@@ -37,8 +37,9 @@ class Button {
 
         return newElement
     }
-    // destroy(buttonID: string = this.id) {
-        // let button:Button = Button.getButtonById(buttonID)
-        // Button.instances.find(button)
-    // }
+    destroy(buttonID: string = this.id): void {
+        let buttonToDestroy = Button.getButtonById(buttonID)
+        let i = Button.instances.indexOf(buttonToDestroy) // gotta use the index to destroy it
+        Button.instances.splice(i,1)
+    }
 }

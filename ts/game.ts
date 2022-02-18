@@ -10,14 +10,14 @@ function errorPopup(error: string|Error) {
     $(errorContainer).append($(`<div id="Error${errorNumber}" class="errorpopup"></div>`))
     const newElement = $(`#Error${errorNumber}`)
     if(typeof error != 'string') error = error.toString()
-    newElement.text(error)
+    newElement.text("There was an error in game code. Please report the following: " + error)
     .css({opacity:1})
     setTimeout(function(){
         newElement.fadeOut(2000,'linear',function(){
             $(`#Error${errorNumber}`).remove()
         })
     },5000)
-    
+    console.error(error)
 }
 function inGameErrorHandle(error: any) {
     if(typeof error !== 'string') {console.log(error.toString());return}

@@ -13,7 +13,7 @@ class Button {
         Button.instances.push(this); // causes a memory leak if we do not remove instances when we are done
     }
 
-    static getButtonById(buttonID: string) {
+    static getButtonById(buttonID: string): Button {
         let button: any = Button.instances.find(x => x.id === buttonID);
         if(button == undefined) throw new Error()
         return <Button>button;

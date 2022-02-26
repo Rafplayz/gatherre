@@ -1,23 +1,32 @@
 let updateInterval = setTimeout(Update,100)
 let saveTimeout = setTimeout(saveTimeoutHandler,14000)
-let player: Player;
+let player: Player
 let saveDateCheck: number
 let updateDateCheck: number
-let errorNumber = 0
+let popupNumber = 0
+load()
 function errorPopup(error: string|Error) {
-    errorNumber++;
-    const errorContainer = $(".ErrorContainer")
-    $(errorContainer).append($(`<div id="Error${errorNumber}" class="errorpopup"></div>`))
-    const newElement = $(`#Error${errorNumber}`)
+    popupNumber++;
+    const PopupContainer = $(".PopupContainer")
+    PopupContainer.append($(`<div id="Error${popupNumber}" class="errorpopup"></div>`))
+    const newElement = $(`#Error${popupNumber}`)
     if(typeof error != 'string') error = error.toString()
-    newElement.text("There was an error in game code. Please report the following: " + error)
+    newElement.text("There was an error processing game logic. Please report the following: " + error)
     .css({opacity:1})
     setTimeout(function(){
         newElement.fadeOut(2000,'linear',function(){
-            $(`#Error${errorNumber}`).remove()
+            this.remove()
         })
     },5000)
     console.error(error)
+}
+function savePopup(): void {
+    popupNumber++
+    const PopupContainer = $('.PopupContainer')
+    PopupContainer.append($(`<div id="savePopup${popupNumber}" class="savePopup">Saved game</div>`))
+    $(`#savePopup${popupNumber}`)
+    .css({opacity:1})
+    .fadeOut(2000,'linear',function(){this.remove()})
 }
 function inGameErrorHandle(error: any) {
     if(typeof error !== 'string') {console.log(error.toString());return}
@@ -43,11 +52,22 @@ function getInitialPlayer() {
 function save() {
     const storedPlayer = JSON.stringify(player)
     window.localStorage.setItem('player',storedPlayer)
+    savePopup()
     return storedPlayer
+}
+function clearSave() {
+    let userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
+    if(userIn === "YES") {
+        window.localStorage.setItem('player','reset')
+        document.location.reload()
+    }
+    else {
+        return
+    }
 }
 function load() {
     const localStoredPlayer = localStorage.getItem('player')
-    if(localStoredPlayer == undefined){player = getInitialPlayer();return}
+    if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer();return}
     try {
     player = JSON.parse(localStoredPlayer)
     }
@@ -81,4 +101,3 @@ function updateElement(elementID: string,text: string): void {
     if(elem == null) throw new Error("elementID must be a valid ID")
     elem.innerText = text
 }
-load()

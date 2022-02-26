@@ -3,7 +3,7 @@
 probably gonna host this later
 
 compile steps:
-- step 1. install typescript (if not already)<br>
+- step 1. 
 install [npm](https://www.npmjs.com/package/npm)<br>
 open command prompt and paste `npm i -g typescript`<br>
 - step 2. clone repository<br>

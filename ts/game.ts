@@ -4,10 +4,9 @@ let player: Player
 let saveDateCheck: number
 let updateDateCheck: number
 let popupNumber = 0
-load()
 function errorPopup(error: string|Error) {
     popupNumber++;
-    const PopupContainer = $(".PopupContainer")
+    const PopupContainer = $(".popupContainer")
     PopupContainer.append($(`<div id="Error${popupNumber}" class="errorpopup"></div>`))
     const newElement = $(`#Error${popupNumber}`)
     if(typeof error != 'string') error = error.toString()
@@ -22,7 +21,7 @@ function errorPopup(error: string|Error) {
 }
 function savePopup(): void {
     popupNumber++
-    const PopupContainer = $('.PopupContainer')
+    const PopupContainer = $('.popupContainer')
     PopupContainer.append($(`<div id="savePopup${popupNumber}" class="savePopup">Saved game</div>`))
     $(`#savePopup${popupNumber}`)
     .css({opacity:1})
@@ -38,7 +37,6 @@ function saveTimeoutHandler() {
     if(saveDateCheck === undefined) saveDateCheck = currentDate
     if ((currentDate - saveDateCheck >= 14000)){
         save();
-        console.clear();
         console.log("saved")
     }
     clearTimeout(saveTimeout)
@@ -56,7 +54,7 @@ function save() {
     return storedPlayer
 }
 function clearSave() {
-    let userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
+    const userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
     if(userIn === "YES") {
         window.localStorage.setItem('player','reset')
         document.location.reload()
@@ -96,8 +94,5 @@ function Update(): void {
     updateDateCheck = Date.now()
     updateInterval = setTimeout(Update,100)
 }
-function updateElement(elementID: string,text: string): void {
-    let elem = document.getElementById(elementID)
-    if(elem == null) throw new Error("elementID must be a valid ID")
-    elem.innerText = text
-}
+const updateElement = (elementID: string,text: string) => $(`#${elementID}`).text(text)
+load()

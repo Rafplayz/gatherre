@@ -1,16 +1,21 @@
 function errorPopup(error: string|Error) {
     popupNumber++;
+
     const PopupContainer = $(".popupContainer")
     PopupContainer.append($(`<div id="Error${popupNumber}" class="errorpopup"></div>`))
+    
     const newElement = $(`#Error${popupNumber}`)
+
     if(typeof error != 'string') error = error.toString()
+
     newElement.text("There was an error processing game logic. Please report the following: " + error)
     .css({opacity:1})
-    setTimeout(function(){
-        newElement.fadeOut(2000,'linear',function(){
-            this.remove()
-        })
-    },5000)
+
+    setTimeout(() => newElement.fadeOut(2000,'linear',function(){
+        this.remove()
+    })
+    ,5000)
+    
     console.error(error)
 }
 function savePopup(): void {
@@ -67,8 +72,8 @@ function Update(): void {
     if (updateDateCheck === undefined)
         updateDateCheck = currentDate;
     if ((currentDate - updateDateCheck >= 100)) {
-        $("Berry").text(`Berries: ${player.berries}`);
-        $("Stick").text(`Sticks: ${player.sticks}`)
+        $("#Berry").text(`Berries: ${player.berries}`);
+        $("#Stick").text(`Sticks: ${player.sticks}`)
     }
     updateDateCheck = Date.now();
     updateInterval = setTimeout(Update, 100);

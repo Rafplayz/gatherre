@@ -1,11 +1,13 @@
-* {
+:root {
     --progress-bar: #04AA6d;
     --background: rgb(30, 30, 36);
     --min-height-button: 50px;
     --min-width-button: 70px;
     --error: rgb(140,50,50);
-    color: lightgray;
     font-family:'Roboto', sans-serif !important;
+}
+* {
+    color: lightgray;
     overflow-y: hidden;
 }
 .bordered {

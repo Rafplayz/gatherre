@@ -4,10 +4,22 @@ let player: Player
 let saveDateCheck: number
 let updateDateCheck: number
 let popupNumber = 0
+
 function gatherItems(): void{
+    const rand = Math.random()
+    if(rand >= 0.5) {
+        console.log("Ran")
+        player.berries = player.berries + 2n
+    }
+    else {
+        player.berries++
+    }
     console.log("gatherItems received")
-    player.berries++
 }
+
+
+
+
 const gatherButton = new TimedButton(
     "Gather (timed)",
     "gatherTimed",
@@ -16,5 +28,4 @@ const gatherButton = new TimedButton(
     2000
 )
 gatherButton.assign("gatherButton")
-const updateElement = (elementID: string,text: string) => $(`#${elementID}`).text(text)
 load()

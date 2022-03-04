@@ -36,11 +36,6 @@ function saveTimeoutHandler() {
     clearTimeout(saveTimeout)
     saveTimeout = setTimeout(saveTimeoutHandler,14000)
 }
-function getInitialPlayer() {
-    return {
-        berries: 0,
-    }
-}
 function save() {
     const storedPlayer = JSON.stringify(player)
     window.localStorage.setItem('player',storedPlayer)
@@ -72,7 +67,8 @@ function Update(): void {
     if (updateDateCheck === undefined)
         updateDateCheck = currentDate;
     if ((currentDate - updateDateCheck >= 100)) {
-        updateElement("main", `Berries: ${player.berries}`);
+        $("Berry").text(`Berries: ${player.berries}`);
+        $("Stick").text(`Sticks: ${player.sticks}`)
     }
     updateDateCheck = Date.now();
     updateInterval = setTimeout(Update, 100);

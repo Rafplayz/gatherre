@@ -1,5 +1,5 @@
 let updateInterval = setTimeout(Update,100)
-let saveTimeout = setTimeout(saveTimeoutHandler,14000)
+let saveInterval = setTimeout(saveTimeoutHandler,14000)
 let player: Player
 let saveDateCheck: number
 let updateDateCheck: number

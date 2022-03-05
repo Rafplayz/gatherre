@@ -2,10 +2,8 @@ function errorPopup(error: string|Error) {
     popupNumber++;
 
     const PopupContainer = $(".popupContainer")
-    PopupContainer.append($(`<div id="Error${popupNumber}" class="errorpopup"></div>`))
-    
+    PopupContainer.append($(`<div id="Error${popupNumber}" class="error popup"></div>`))
     const newElement = $(`#Error${popupNumber}`)
-
     if(typeof error != 'string') error = error.toString()
 
     newElement.text("There was an error processing game logic. Please report the following: " + error)
@@ -15,16 +13,23 @@ function errorPopup(error: string|Error) {
         this.remove()
     })
     ,5000)
-    
+
     console.error(error)
 }
 function savePopup(): void {
     popupNumber++
     const PopupContainer = $('.popupContainer')
-    PopupContainer.append($(`<div id="savePopup${popupNumber}" class="savePopup">Saved game</div>`))
+    PopupContainer.append($(`<div id="savePopup${popupNumber}" class="save popup">Saved game</div>`))
+    const prevSaveCount = Array.from(document.querySelectorAll('.save')).length
     $(`#savePopup${popupNumber}`)
-    .css({opacity:1})
-    .fadeOut(2000,'linear',function(){this.remove()})
+    .css({opacity:1,top:prevSaveCount*36})
+    .fadeOut(2000,'linear',function(){
+        this.remove()
+        document.querySelectorAll('.save').forEach((element,index) => {
+            let e = element as HTMLElement
+            e.style.top = (Number(e.style.top) - (36 * index)).toString()
+        })
+    })
 }
 function inGameErrorHandle(error: any) {
     if(typeof error !== 'string') {console.log(error.toString());return}
@@ -38,8 +43,8 @@ function saveTimeoutHandler() {
         save();
         console.log("saved")
     }
-    clearTimeout(saveTimeout)
-    saveTimeout = setTimeout(saveTimeoutHandler,14000)
+    clearTimeout(saveInterval)
+    saveInterval = setTimeout(saveTimeoutHandler,14000)
 }
 function save() {
     const storedPlayer = JSON.stringify(player)

@@ -103,10 +103,9 @@ button.button:active {
 .error {
     background-color:rgb(140,50,50);
     border: 2px solid rgb(160,80,80);
-    border-radius: 5px;
-    margin: 10px 10px 10px 10px;
 }
 .save {
+    position:absolute;
     background-color:#04AA6d;
     border: 2px solid #03cc82;
     height:30px;

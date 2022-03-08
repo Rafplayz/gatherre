@@ -5,7 +5,7 @@ let saveDateCheck: number
 let updateDateCheck: number
 let popupNumber = 0
 
-function gatherItems(): void{
+function gatherItems():void{
     const rand = Math.random()
     if(rand >= 0.5) {
         console.log("Ran")
@@ -29,3 +29,6 @@ const gatherButton = new TimedButton(
 )
 gatherButton.assign("gatherButton")
 load()
+.catch((reason) => {
+    errorPopup(reason)
+});

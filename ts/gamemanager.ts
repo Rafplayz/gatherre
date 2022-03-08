@@ -57,15 +57,19 @@ function clearSave():void {
         return
     }
 }
-function load():void {
-    const localStoredPlayer = localStorage.getItem('player')
-    if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer();return}
-    try {
-    player = JSON.parse(localStoredPlayer)
-    }
-    catch(err) {
-        console.error(err) // TODO: add an error popup
-    }
+async function load():Promise<unknown> {
+    return new Promise((resolve,reject) => {
+        const localStoredPlayer = localStorage.getItem('player')
+        if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer();return}
+        try {
+            player = JSON.parse(localStoredPlayer)
+            resolve(player)
+        }
+        catch(err) {
+            reject(err)
+        }
+    })
+
 }
 function Update():void {
     const currentDate = Date.now();

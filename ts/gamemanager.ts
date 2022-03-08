@@ -1,4 +1,4 @@
-function errorPopup(error: string|Error) {
+function errorPopup(error: string|Error):void {
     popupNumber++;
 
     const PopupContainer = $(".popupContainer")
@@ -18,7 +18,7 @@ function errorPopup(error: string|Error) {
     
     console.error(error)
 }
-function savePopup(): void {
+function savePopup():void {
     popupNumber++
     const PopupContainer = $('.popupContainer')
     PopupContainer.append($(`<div id="savePopup${popupNumber}" class="savePopup">Saved game</div>`))
@@ -26,12 +26,12 @@ function savePopup(): void {
     .css({opacity:1})
     .fadeOut(2000,'linear',function(){this.remove()})
 }
-function inGameErrorHandle(error: any) {
+function inGameErrorHandle(error: any):void{
     if(typeof error !== 'string') {console.log(error.toString());return}
     console.log(error)
     errorPopup(error)
 }
-function saveTimeoutHandler() {
+function saveTimeoutHandler():void {
     const currentDate = Date.now()
     if(saveDateCheck === undefined) saveDateCheck = currentDate
     if ((currentDate - saveDateCheck >= 14000)){
@@ -41,13 +41,13 @@ function saveTimeoutHandler() {
     clearTimeout(saveTimeout)
     saveTimeout = setTimeout(saveTimeoutHandler,14000)
 }
-function save() {
+function save():string {
     const storedPlayer = JSON.stringify(player)
     window.localStorage.setItem('player',storedPlayer)
     savePopup()
     return storedPlayer
 }
-function clearSave() {
+function clearSave():void {
     const userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
     if(userIn === "YES") {
         window.localStorage.setItem('player','reset')
@@ -57,7 +57,7 @@ function clearSave() {
         return
     }
 }
-function load() {
+function load():void {
     const localStoredPlayer = localStorage.getItem('player')
     if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer();return}
     try {
@@ -67,7 +67,7 @@ function load() {
         console.error(err) // TODO: add an error popup
     }
 }
-function Update(): void {
+function Update():void {
     const currentDate = Date.now();
     if (updateDateCheck === undefined)
         updateDateCheck = currentDate;

@@ -1,4 +1,4 @@
-import {Player,getInitialPlayer} from 'Player'
+import {Player,getInitialPlayer} from './Player'
 export let saveTimeout: number
 export let updateInterval: number
 export let popupNumber = 0

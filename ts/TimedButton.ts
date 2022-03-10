@@ -1,5 +1,5 @@
-import * as gm from 'gamemanager'
-import {Button} from 'Button'
+import * as gm from './gamemanager'
+import {Button} from './Button'
 export class TimedButton extends Button {
     timer: number
     private isIterating = false

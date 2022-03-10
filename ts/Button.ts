@@ -1,4 +1,4 @@
-import * as gm from 'gamemanager'
+import * as gm from './gamemanager'
 export class Button {
     title: string
     id: string

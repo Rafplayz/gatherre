@@ -3,12 +3,11 @@ export let saveTimeout: number
 export let updateInterval: number
 export let popupNumber = 0
 export let updateDateCheck: number
-export type timeOut = {
+type timeOut = {
     func: Function
     time: number
     param: any
 }
-
 export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
     saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)
     updateInterval = setTimeout(updateInfo.func,updateInfo.time,updateInfo.param)

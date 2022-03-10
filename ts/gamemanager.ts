@@ -3,7 +3,7 @@ export let saveTimeout: number
 export let updateInterval: number
 export let popupNumber = 0
 export let updateDateCheck: number
-type timeOut = {
+export type timeOut = {
     func: Function
     time: number
     param: any
@@ -62,7 +62,7 @@ export function saveTimeoutHandler(player:Player):void {
         console.log("saved")
     }
     clearTimeout(saveTimeout)
-    saveTimeout = setTimeout(saveTimeoutHandler,14000)
+    saveTimeout = setTimeout(saveTimeoutHandler,14000,player)
 }
 export function save(player: Player): string {
     const storedPlayer = JSON.stringify(player)

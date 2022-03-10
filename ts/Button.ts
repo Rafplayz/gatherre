@@ -1,4 +1,5 @@
-class Button {
+import * as gm from 'gamemanager'
+export class Button {
     title: string
     id: string
     effect: Function
@@ -23,7 +24,7 @@ class Button {
         try {
         button.effect()
         }
-        catch(err){inGameErrorHandle(err)}
+        catch(err){gm.inGameErrorHandle(err)}
     }
     assign(element: string|HTMLElement): HTMLElement {
         let newElement: any = element; // has to be any or else below code doesn't compile

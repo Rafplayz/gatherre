@@ -1,4 +1,6 @@
-class TimedButton extends Button {
+import * as gm from 'gamemanager'
+import {Button} from 'Button'
+export class TimedButton extends Button {
     timer: number
     private isIterating = false
     public progressbar: HTMLElement|undefined
@@ -37,7 +39,7 @@ class TimedButton extends Button {
             }
         }
         catch(err) {
-            inGameErrorHandle(err)
+            gm.inGameErrorHandle(err)
         }
     }
     public static getTimedButtonById(buttonID: string) {

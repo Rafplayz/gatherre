@@ -1,8 +1,11 @@
 import * as gm from 'gamemanager'
 import {Player} from 'Player'
-
 let player: Player
-
+player = gm.load()
+gm.initTimeouts(
+    {func: () => {},time: 14000,param: player},
+    {func: () => {},time: 100,param: player}
+)
 
 
 function gatherItems(): void{
@@ -28,4 +31,3 @@ const gatherButton = new TimedButton(
     2000
 )
 gatherButton.assign("gatherButton")
-gm.load()

@@ -12,8 +12,7 @@ export type timeOut = {
 export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
     saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)
     updateInterval = setTimeout(updateInfo.func,updateInfo.time,updateInfo.param)
-    //$("#Berry").text(`Berries: ${player.berries}`);
-    //$("#Stick").text(`Sticks: ${player.sticks}`)
+    
 }
 export function errorPopup(error: string|Error): void {
     popupNumber++;

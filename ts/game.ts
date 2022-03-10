@@ -4,11 +4,15 @@ import {TimedButton} from './TimedButton'
 import {Button} from './Button'
 import {Player} from './Player'
 //  globals
-let PLAYER: Player = gm.load()
+const PLAYER: Player = gm.load()
 gm.initTimeouts(
-    {func: () => {},time: 14000,param: PLAYER},
-    {func: () => {},time: 100,param: PLAYER}
+    {func: gm.save,time: 14000,param: PLAYER},
+    {func: gm.Update,time: 100,param: () => {
+        $("#Berry").text(`Berries: ${PLAYER.berries}`)
+        $("#Stick").text(`Sticks: ${PLAYER.sticks}`)
+    }}
 )
+
 
 
 function gatherItems(): void{

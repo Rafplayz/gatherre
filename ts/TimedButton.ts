@@ -1,15 +1,14 @@
 class TimedButton extends Button {
     timer: number
-    activated = false
-    isIterating = false
-    progressbar: HTMLElement|undefined
+    private isIterating = false
+    public progressbar: HTMLElement|undefined
     static instances: TimedButton[] = []
     constructor(title: string, id: string, effect: Function, desc = "", timer: number) {
         super(title,id,effect,desc)
         this.timer = timer
         TimedButton.instances.push(this)
     }
-    override click(buttonID: string = this.id): void|unknown {
+    public override click(buttonID: string = this.id): void|unknown {
         const button = TimedButton.getTimedButtonById(buttonID)
         if(button == undefined) throw new Error()
         if (button.isIterating == false) button.isIterating = true
@@ -38,10 +37,10 @@ class TimedButton extends Button {
             }
         }
         catch(err) {
-            return err
+            inGameErrorHandle(err)
         }
     }
-    static getTimedButtonById(buttonID: string) {
+    public static getTimedButtonById(buttonID: string) {
         let button: TimedButton
         try {
             let unsafe = TimedButton.instances.find(x => x.id === buttonID);
@@ -53,7 +52,7 @@ class TimedButton extends Button {
         }
         return button;
     }
-    override assign(element: string|HTMLElement) {
+    public override assign(element: string|HTMLElement) {
         let newElement: any = element;
         // type guarding
         if(typeof element == "string") newElement = document.getElementById(element)

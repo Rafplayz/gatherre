@@ -1,11 +1,26 @@
-function errorPopup(error: string|Error):void {
+import {Player,getInitialPlayer} from 'Player'
+export let saveTimeout: number
+export let updateInterval: number
+export let popupNumber = 0
+export let updateDateCheck: number
+type timeOut = {
+    func: Function
+    time: number
+    param: any
+}
+
+export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
+    saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)
+    updateInterval = setTimeout(updateInfo.func,updateInfo.time,updateInfo.param)
+    //$("#Berry").text(`Berries: ${player.berries}`);
+    //$("#Stick").text(`Sticks: ${player.sticks}`)
+}
+export function errorPopup(error: string|Error): void {
     popupNumber++;
 
     const PopupContainer = $(".popupContainer")
-    PopupContainer.append($(`<div id="Error${popupNumber}" class="errorpopup"></div>`))
-    
+    PopupContainer.append($(`<div id="Error${popupNumber}" class="error popup"></div>`))
     const newElement = $(`#Error${popupNumber}`)
-
     if(typeof error != 'string') error = error.toString()
 
     newElement.text("There was an error processing game logic. Please report the following: " + error)
@@ -15,39 +30,47 @@ function errorPopup(error: string|Error):void {
         this.remove()
     })
     ,5000)
-    
+
     console.error(error)
 }
-function savePopup():void {
+export function savePopup(): void {
     popupNumber++
     const PopupContainer = $('.popupContainer')
-    PopupContainer.append($(`<div id="savePopup${popupNumber}" class="savePopup">Saved game</div>`))
+    PopupContainer.append($(`<div id="savePopup${popupNumber}" class="save popup">Saved game</div>`))
+    const prevSaveCount = Array.from(document.querySelectorAll('.save')).length
     $(`#savePopup${popupNumber}`)
-    .css({opacity:1})
-    .fadeOut(2000,'linear',function(){this.remove()})
+    .css({opacity:1,top:prevSaveCount*36})
+    .fadeOut(2000,'linear',function(){
+        this.remove()
+        document.querySelectorAll('.save').forEach((element,index) => {
+            let e = element as HTMLElement
+            e.style.top = (Number(e.style.top) - (36 * index)).toString()
+        })
+    })
 }
-function inGameErrorHandle(error: any):void{
+export function inGameErrorHandle(error: any): void {
     if(typeof error !== 'string') {console.log(error.toString());return}
     console.log(error)
     errorPopup(error)
 }
-function saveTimeoutHandler():void {
+export function saveTimeoutHandler(player:Player):void {
+    let saveDateCheck
     const currentDate = Date.now()
     if(saveDateCheck === undefined) saveDateCheck = currentDate
     if ((currentDate - saveDateCheck >= 14000)){
-        save();
+        save(player);
         console.log("saved")
     }
     clearTimeout(saveTimeout)
     saveTimeout = setTimeout(saveTimeoutHandler,14000)
 }
-function save():string {
+export function save(player: Player): string {
     const storedPlayer = JSON.stringify(player)
     window.localStorage.setItem('player',storedPlayer)
     savePopup()
     return storedPlayer
 }
-function clearSave():void {
+export function clearSave(): void {
     const userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
     if(userIn === "YES") {
         window.localStorage.setItem('player','reset')
@@ -57,27 +80,19 @@ function clearSave():void {
         return
     }
 }
-async function load():Promise<unknown> {
-    return new Promise((resolve,reject) => {
-        const localStoredPlayer = localStorage.getItem('player')
-        if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer();return}
-        try {
-            player = JSON.parse(localStoredPlayer)
-            resolve(player)
-        }
-        catch(err) {
-            reject(err)
-        }
-    })
-
+export function load(): Player {
+    let player: Player
+    const localStoredPlayer = <Player>(<unknown>localStorage.getItem('player'))
+    if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer()}
+    else player = localStoredPlayer
+    return player
 }
-function Update():void {
+export function Update(textUpdate: Function): void {
     const currentDate = Date.now();
     if (updateDateCheck === undefined)
         updateDateCheck = currentDate;
     if ((currentDate - updateDateCheck >= 100)) {
-        $("#Berry").text(`Berries: ${player.berries}`);
-        $("#Stick").text(`Sticks: ${player.sticks}`)
+        textUpdate()
     }
     updateDateCheck = Date.now();
     updateInterval = setTimeout(Update, 100);

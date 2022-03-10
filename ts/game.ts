@@ -1,11 +1,11 @@
-let updateInterval = setTimeout(Update,100)
-let saveTimeout = setTimeout(saveTimeoutHandler,14000)
-let player: Player
-let saveDateCheck: number
-let updateDateCheck: number
-let popupNumber = 0
+import * as gm from 'gamemanager'
+import {Player} from 'Player'
 
-function gatherItems():void{
+let player: Player
+
+
+
+function gatherItems(): void{
     const rand = Math.random()
     if(rand >= 0.5) {
         console.log("Ran")
@@ -28,7 +28,4 @@ const gatherButton = new TimedButton(
     2000
 )
 gatherButton.assign("gatherButton")
-load()
-.catch((reason) => {
-    errorPopup(reason)
-});
+gm.load()

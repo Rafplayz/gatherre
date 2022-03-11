@@ -1,10 +1,11 @@
-//  imports
+// imports
 import * as gm from './gamemanager'
 import {TimedButton} from './TimedButton'
 import {Button} from './Button'
 import {Player} from './Player'
-//  globals
+// globals
 const PLAYER: Player = gm.load()
+// game manager initialization
 gm.initTimeouts(
     {func: gm.save,time: 14000,param: PLAYER},
     {func: gm.Update,time: 100,param: () => {

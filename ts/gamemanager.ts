@@ -1,8 +1,8 @@
 import {Player,getInitialPlayer} from './Player'
-export let saveTimeout: number
-export let updateInterval: number
-export let popupNumber = 0
-export let updateDateCheck: number
+let saveTimeout: number
+let updateInterval: number
+let popupNumber = 0
+let updateDateCheck: number
 type timeOut = {
     func: Function
     time: number
@@ -11,7 +11,6 @@ type timeOut = {
 export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
     saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)
     updateInterval = setTimeout(updateInfo.func,updateInfo.time,updateInfo.param)
-    
 }
 export function errorPopup(error: string|Error): void {
     popupNumber++;

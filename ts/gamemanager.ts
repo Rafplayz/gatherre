@@ -85,6 +85,7 @@ export function load(): Player {
     return player
 }
 export function Update(textUpdate: Function): void {
+    if(typeof textUpdate !== 'function') throw 'Bruh'
     const currentDate = Date.now();
     if (updateDateCheck === undefined)
         updateDateCheck = currentDate;

@@ -1,4 +1,3 @@
-BigInt.prototype.toJSON = function() {return this.toString()}
 export interface Player {
     berries: bigint;
     sticks: bigint;

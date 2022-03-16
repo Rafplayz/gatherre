@@ -1,4 +1,4 @@
-import {Player,getInitialPlayer} from './Player'
+import {Player,getInitialPlayer} from './Player.js'
 let saveTimeout: number
 let updateInterval: number
 let popupNumber = 0

@@ -1,5 +1,5 @@
 interface BigInt {
-    toJSON: function
+    toJSON(): string
 }
 BigInt.prototype.toJSON = function() {return this.toString()}
 export interface Player {

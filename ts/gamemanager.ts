@@ -93,5 +93,5 @@ export function Update(textUpdate: Function): void {
         textUpdate()
     }
     updateDateCheck = Date.now();
-    updateInterval = setTimeout(Update, 100);
+    updateInterval = setTimeout(Update, 100, textUpdate);
 }

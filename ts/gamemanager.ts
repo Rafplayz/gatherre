@@ -1,7 +1,8 @@
 const VERSION: Player["VERSION"] = {
-    number: "0.0.1",
+    number: "0.0.0",
     isBeta: false,
     isPrerelease: false,
+    name: "Indev",
 }
 import {Player} from './Player.js'
 let saveTimeout: number
@@ -19,6 +20,10 @@ function getInitialPlayer() {
         berries: 0n,
         sticks: 0n,
     }
+}
+export function getVersionString(version: Player["VERSION"]) {
+    let {number, isBeta, isPrerelease, name} = version
+    return (isBeta ? "Beta " : isPrerelease ? "Pre-release " : "") + number + " " + name ?? ""
 }
 export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
     saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)

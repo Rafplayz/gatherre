@@ -1,4 +1,9 @@
-import {Player,getInitialPlayer} from './Player.js'
+const VERSION: Player["VERSION"] = {
+    number: "0.0.1",
+    isBeta: false,
+    isPrerelease: false,
+}
+import {Player} from './Player.js'
 let saveTimeout: number
 let updateInterval: number
 let popupNumber = 0
@@ -7,6 +12,13 @@ type timeOut = {
     func: Function
     time: number
     param: any
+}
+function getInitialPlayer() {
+    return {
+        VERSION: VERSION,
+        berries: 0n,
+        sticks: 0n,
+    }
 }
 export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
     saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)

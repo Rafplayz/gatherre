@@ -1,6 +1,6 @@
 # gatherre
 
-probably gonna host this later
+welcome to the thingy i've been working on for about like a month now
 
 compile steps:
 - step 1. 

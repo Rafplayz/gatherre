@@ -5,6 +5,7 @@ interface BigInt {
     toJSON():string
 }
 interface Player {
+    [key:string]: any
     VERSION: {
         number: string
         isBeta: boolean

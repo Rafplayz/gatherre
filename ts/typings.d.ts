@@ -6,6 +6,7 @@ declare global {
         toJSON():string
     }
     interface Player {
+        [key:string]: any
         VERSION: {
             number: string
             isBeta: boolean

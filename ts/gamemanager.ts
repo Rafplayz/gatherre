@@ -5,8 +5,6 @@ const VERSION: Player["VERSION"] = {
     name: "Indev",
 }
 import './typingdeclarations'
-let saveTimeout: number
-let updateInterval: number
 let popupNumber = 0
 let updateDateCheck: number
 type timeOut = {
@@ -26,8 +24,8 @@ export function getVersionString(version: Player["VERSION"]) {
     return (isBeta ? "Beta " : isPrerelease ? "Pre-release " : "") + number + " " + name ?? ""
 }
 export function initTimeouts(saveInfo:timeOut,updateInfo: timeOut) {
-    saveTimeout = setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)
-    updateInterval = setTimeout(updateInfo.func,updateInfo.time,updateInfo.param)
+    setTimeout(saveInfo.func,saveInfo.time,saveInfo.param)
+    setTimeout(updateInfo.func,updateInfo.time,updateInfo.param)
 }
 export function errorPopup(error: string|Error): void {
     popupNumber++;
@@ -75,8 +73,7 @@ export function saveTimeoutHandler(player:Player):void {
         save(player);
         console.log("saved")
     }
-    clearTimeout(saveTimeout)
-    saveTimeout = setTimeout(saveTimeoutHandler,14000,player)
+    setTimeout(saveTimeoutHandler,14000,player)
 }
 export function save(player: Player): string {
     const storedPlayer = JSON.stringify(player)
@@ -110,5 +107,5 @@ export function Update(textUpdate: Function): void {
         textUpdate()
     }
     updateDateCheck = Date.now();
-    updateInterval = setTimeout(Update, 100, textUpdate);
+    setTimeout(Update, 100, textUpdate);
 }

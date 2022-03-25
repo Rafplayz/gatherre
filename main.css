@@ -87,6 +87,7 @@ button.button:active {
     display:grid;
 }
 .popupContainer {
+    pointer-events: none;
     position:absolute;
     width:30%;
     height: 100%;

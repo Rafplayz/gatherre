@@ -1,16 +1,32 @@
+window.onerror = function(error) {
+    gm.errorPopup(<string>error)
+}
 // imports
 import * as gm from './gamemanager.js'
 import { TimedButton } from './TimedButton.js'
 // globals
 const PLAYER: Player = gm.load()
 // game manager initialization
+function clearSave(): void {
+    const userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
+    if(userIn === "YES") {
+        window.localStorage.setItem('player','reset')
+        document.location.reload()
+    }
+    else {
+        return
+    }
+}
+
+$("#wipesave").on("click",clearSave)
 gm.initTimeouts(
     {func: gm.save,time: 14000,param: PLAYER},
     {func: gm.Update,time: 100,param: () => {
-        $("#Berry").text(`Berries: ${PLAYER.berries}`)
-        $("#Stick").text(`Sticks: ${PLAYER.sticks}`)
+        $("#Berry").text(`Berries: ${PLAYER.v.berries.v}`)
+        $("#Stick").text(`Sticks: ${PLAYER.v.sticks.v}`)
     }}
 )
+
 
 
 
@@ -24,21 +40,23 @@ function gatherItems(): void {
     switch(randpool1) {
         case 1:
         case 2:
-            PLAYER.berries++
+            PLAYER.v.berries.v++
             break
         case 3:
             break
         case 4:
-            PLAYER.berries = PLAYER.berries + 2n
+            console.log(typeof PLAYER.v.berries.v)
+            PLAYER.v.berries.v = PLAYER.v.berries.v + 2n
             break
         case 5:
-            PLAYER.berries = PLAYER.berries + 3n
+            console.log(typeof PLAYER.v.berries.v)
+            PLAYER.v.berries.v = PLAYER.v.berries.v + 3n
             break
     }
     switch (randpool2) {
         // make sticks much rarer than berries
         case 5:
-            PLAYER.sticks++
+            PLAYER.v.sticks.v++
             break
         default:
             console.log("nothing")

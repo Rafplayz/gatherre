@@ -19,8 +19,14 @@ type timeOut = {
 function getInitialPlayer() {
     return {
         VERSION: VERSION,
-        berries: 0n,
-        sticks: 0n,
+        v: {
+            berries: {
+                v: 0n,
+            },
+            sticks: {
+                v: 0n
+            },
+        }
     }
 }
 export function getVersionString(version: Player["VERSION"]) {
@@ -45,7 +51,7 @@ export function errorPopup(error: string|Error): void {
     setTimeout(() => newElement.fadeOut(2000,'linear',function(){
         this.remove()
     })
-    ,5000)
+    ,20000)
 
     console.error(error)
 }
@@ -86,22 +92,33 @@ export function save(player: Player): string {
     savePopup()
     return storedPlayer
 }
-export function clearSave(): void {
-    const userIn = prompt('Doing this will reset all your data from the start. Type "YES" below to confirm.')
-    if(userIn === "YES") {
-        window.localStorage.setItem('player','reset')
-        document.location.reload()
-    }
-    else {
-        return
-    }
-}
 export function load(): Player {
     let player: Player
-    const localStoredPlayer = <Player>(<unknown>localStorage.getItem('player'))
-    if(localStoredPlayer == undefined || 'wiped'){player = getInitialPlayer()}
-    else player = localStoredPlayer
+    const bigIntRegEx = /[0-9]+n$/g
+    const localStorageVersion = localStorage.getItem('player')
+    try {
+    if (localStorageVersion == null || localStorageVersion == "undefined" || localStorageVersion == 'reset') {
+        player = getInitialPlayer()
+        return player
+    }
+    player = <Player>JSON.parse(localStorageVersion,(key,value) => {
+        console.log(value)
+        if(value == null) {
+            return 0n
+            
+        }
+        if(value.toString().match(bigIntRegEx)) {
+            const newLocal = <bigint>value.toString().substring(0, value.toString().length - 1)
+            return newLocal
+        }
+        else return value
+    })
     return player
+    }
+    catch(err) {
+        errorPopup("We've been unable to process your save file. Please wipe your save.") // TODO: set up a support channel on discord
+        throw err
+    }
 }
 export function Update(textUpdate: Function): void {
     if(typeof textUpdate !== 'function') throw 'Bruh'

@@ -12,8 +12,15 @@ interface Player {
         isPrerelease: boolean
         name?: string
     }
-    berries: bigint;
-    sticks: bigint;
+    v: {
+        berries: {
+            v: bigint;
+        }
+        sticks: {
+            v: bigint;
+        }
+    }
+    
 }
 Math.randInt = (min: number, max: number): number => {
     min = Math.ceil(min);

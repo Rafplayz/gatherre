@@ -13,7 +13,14 @@ declare global {
             isPrerelease: boolean
             name?: string
         }
-        berries: bigint;
-        sticks: bigint;
+        v: {
+            berries: {
+                v: bigint;
+            }
+            sticks: {
+                v: bigint;
+            }
+        }
+        
     }
 }

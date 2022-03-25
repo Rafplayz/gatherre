@@ -20,7 +20,7 @@ function clearSave(): void {
 
 $("#wipesave").on("click",clearSave)
 gm.initTimeouts(
-    {func: gm.save,time: 14000,param: PLAYER},
+    {func: gm.save,time: 10000,param: PLAYER},
     {func: gm.Update,time: 100,param: () => {
         $("#Berry").text(`Berries: ${PLAYER.v.berries.v}`)
         $("#Stick").text(`Sticks: ${PLAYER.v.sticks.v}`)

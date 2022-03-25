@@ -4,7 +4,7 @@ const VERSION: Player["VERSION"] = {
     isPrerelease: false,
     name: "Indev",
 }
-import {Player} from './Player.js'
+import './typingdeclarations'
 let saveTimeout: number
 let updateInterval: number
 let popupNumber = 0

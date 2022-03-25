@@ -1,7 +1,6 @@
 // imports
 import * as gm from './gamemanager.js'
 import {TimedButton} from './TimedButton.js'
-import {Button} from './Button.js'
 // globals
 const PLAYER: Player = gm.load()
 // game manager initialization

@@ -3,8 +3,28 @@ import {Button} from './Button.js'
 export class TimedButton extends Button {
     timer: number
     private isIterating = false
-    public progressbar: HTMLElement|undefined
-    static instances: TimedButton[] = []
+    /******************************************
+     * Progressbar attached to  the TimedButton element.
+    ******************************************/
+    private _progressbar?: HTMLElement
+    public get progressbar(): HTMLElement|undefined {
+        return this._progressbar
+    }
+    public set progressbar(value: HTMLElement | undefined) {
+        this._progressbar = value
+    }
+    /******************************************
+     * All instances of TimedButtons.
+     * @private Access via TimedButton.instances
+    *******************************************/
+    private static _instances: TimedButton[] = []
+
+    public static get instances(): TimedButton[] {
+        return TimedButton._instances
+    }
+    public static set instances(value: TimedButton[]) {
+        TimedButton._instances = value
+    }
     constructor(title: string, id: string, effect: Function, desc = "", timer: number) {
         super(title,id,effect,desc)
         this.timer = timer

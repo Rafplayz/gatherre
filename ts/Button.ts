@@ -5,7 +5,7 @@ export class Button {
     effect: Function
     desc: string
     static instances: Button[] = [];
-    assignedID: string = ""
+    assignedID?: string
     constructor(title: string, id: string, effect: Function, desc = "") {
         this.title = title;
         this.id = id;
@@ -29,7 +29,7 @@ export class Button {
     assign(element: string|HTMLElement): HTMLElement {
         let newElement: any = element; // has to be any or else below code doesn't compile
 
-        if(typeof element == "string") newElement = document.getElementById(element)
+        if(typeof element === "string") newElement = document.getElementById(element)
         if(newElement == null) throw new Error()
         
         newElement.onclick = () => this.click(this.id)

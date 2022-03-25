@@ -18,8 +18,8 @@ gm.initTimeouts(
 
 function gatherItems(): void{
     const rand = Math.random()
+    
     if(rand >= 0.5) {
-        console.log("Ran")
         PLAYER.berries = PLAYER.berries + 2n
     }
     else {

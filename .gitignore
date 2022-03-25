@@ -1,5 +1,4 @@
-compiled-js/*
-!compiled-js/bigint.js
+compiled-js
 .vscode
 # File created using '.gitignore Generator' for Visual Studio Code: https://bit.ly/vscode-gig
 

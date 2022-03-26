@@ -89,7 +89,8 @@ export function save(player) {
 }
 export function load() {
     let player;
-    const bigIntRegEx = /[0-9]+n$/g;
+    const bigIntRegEx = /[0-9]+n/g;
+    const NotBigIntRegEx = /"[0-9]+n"/g;
     const localStorageVersion = localStorage.getItem('player');
     try {
         if (localStorageVersion == null || localStorageVersion == "undefined" || localStorageVersion == 'reset') {
@@ -101,7 +102,13 @@ export function load() {
             if (value == null) {
                 return 0n;
             }
+            if (typeof value == "number") { // TODO: this is a bandaid. fix this later. 
+                return BigInt(value); // what a brute force method.
+            }
             if (value.toString().match(bigIntRegEx)) {
+                if (value.toString().match(NotBigIntRegEx)) {
+                    return value;
+                }
                 const newLocal = value.toString().substring(0, value.toString().length - 1);
                 return newLocal;
             }

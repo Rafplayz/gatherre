@@ -36,11 +36,14 @@ function gatherItems() {
             break;
         case 4:
             console.log(typeof PLAYER.v.berries.v);
-            PLAYER.v.berries.v = PLAYER.v.berries.v + 2n;
+            PLAYER.v.berries.v++;
+            PLAYER.v.berries.v++;
             break;
         case 5:
             console.log(typeof PLAYER.v.berries.v);
-            PLAYER.v.berries.v = PLAYER.v.berries.v + 3n;
+            PLAYER.v.berries.v++;
+            PLAYER.v.berries.v++;
+            PLAYER.v.berries.v++;
             break;
     }
     switch (randpool2) {

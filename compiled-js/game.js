@@ -18,13 +18,13 @@ function clearSave() {
     }
 }
 $("#wipesave").on("click", clearSave);
-gm.initTimeouts({ func: gm.saveTimeoutHandler, time: 10000, param: PLAYER }, { func: gm.Update, time: 100, param: () => {
+gm.initTimeouts({ func: gm.save, time: 14000, param: PLAYER }, { func: gm.Update, time: 100, param: () => {
         $("#Berry").text(`Berries: ${PLAYER.v.berries.v}`);
         $("#Stick").text(`Sticks: ${PLAYER.v.sticks.v}`);
     } });
 function gatherItems() {
     // the idea is to make separate "loot tables", kind of like how in minecraft you can get emeralds and bones,
-    // or emeralds and bone meals, or diamonds and bones, etc.
+    // or emeralds and bone meals, or diamonds and bones. that's basically how it goes
     const randpool1 = Math.randInt(1, 5);
     const randpool2 = Math.randInt(1, 5);
     switch (randpool1) {

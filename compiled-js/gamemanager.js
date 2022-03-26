@@ -69,23 +69,12 @@ export function inGameErrorHandle(error) {
     console.log(error);
     errorPopup(error);
 }
-export function saveTimeoutHandler(player) {
-    let saveDateCheck;
-    const currentDate = Date.now();
-    if (saveDateCheck === undefined)
-        saveDateCheck = currentDate;
-    if ((currentDate - saveDateCheck >= 14000)) {
-        save(player);
-        console.log("saved");
-    }
-    clearTimeout(saveTimeout);
-    saveTimeout = setTimeout(saveTimeoutHandler, 14000, player);
-}
 export function save(player) {
     const storedPlayer = JSON.stringify(player);
     window.localStorage.setItem('player', storedPlayer);
     savePopup();
-    saveTimeout = setTimeout(save, 10000, player);
+    clearTimeout(saveTimeout);
+    saveTimeout = setTimeout(save, 14000, player);
     return storedPlayer;
 }
 export function load() {

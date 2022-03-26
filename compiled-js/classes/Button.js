@@ -1,4 +1,4 @@
-import * as gm from './gamemanager.js';
+import * as gm from '../gamemanager.js';
 export class Button {
     constructor(title, id, effect, desc = "") {
         this.title = title;

@@ -103,24 +103,12 @@ export function load(): Player {
         return player
     }
     player = <Player>JSON.parse(localStorageVersion,(key,value) => {
-        console.log(value)
-        if(value == null) {
-            return 0n
-            
+        if (typeof value === 'string' && /^\d+n$/.test(value)) {
+            return BigInt(value.slice(0, -1));
         }
-        if(typeof value == "number") { // TODO: this is a bandaid. fix this later. 
-            return BigInt(value) // what a brute force method.
-        }
-        if(value.toString().match(bigIntRegEx)) {
-            if(value.toString().match(NotBigIntRegEx)) {
-                return value
-            }
-            const newLocal = <bigint>value.toString().substring(0, value.toString().length - 1)
-            return newLocal
-        }
-        else return value
+        return value;
     })
-    
+    console.log(player)
     return player
     }
     catch(err) {

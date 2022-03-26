@@ -21,6 +21,9 @@
 #main {
     --height: 100%;
 }
+#main * {
+    text-align:center;
+}
 .col {
     --height: calc(100% - 114px);
     min-width: 49.5%;
@@ -151,10 +154,27 @@ button.button:active {
     background-color:rgb(140,50,50);
     border: 2px solid rgb(160,80,80);
     border-radius: 5px;
-    margin: 10px 10px 10px 10px;
+    margin: 10px;
 }
 .save {
     background-color:#04AA6d;
     border: 2px solid #03cc82;
     height:30px;
+}
+.return {
+    float: left;
+    background-color: var(--light-bg);
+    border:none;
+    height:64px;
+    width:64px;
+    font-size: 2vw;
+    overflow: visible;
+    z-index: 100;
+}
+#numbers {
+    width:100%
+}
+#wipesave {
+    float: left;
+    margin: 5px;
 }

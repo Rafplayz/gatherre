@@ -4,8 +4,7 @@ import * as gm from './gamemanager.js'
 
 e.settingsbutton.on("click",(event) => {
     event.preventDefault()
-    e.settingsbutton.hide()
-    gm.colRight()
+    gm.colRight(e.settingsbutton)
     .append('<p>Hello World</p>')
 })
 

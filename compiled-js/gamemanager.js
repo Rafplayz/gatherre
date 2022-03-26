@@ -109,10 +109,22 @@ export function Update(textUpdate) {
     updateDateCheck = Date.now();
     updateInterval = setTimeout(Update, 100, textUpdate);
 }
-export function colRight() {
+export function colRight(button) {
     const newColumn = $('<div class="col right"></div>');
     $('#game').append(newColumn);
     $('#main').css({ "width": "49.5%" });
     newColumn.append($('<button id="return" class="return">←</button>'));
+    $('#return').on("click", (event) => {
+        event.preventDefault();
+        $('#main').css({ "width": "100%" });
+        $('#game').children('.col').remove();
+        button.show();
+    });
+    button.hide();
     return newColumn;
+}
+export function unCol(button) {
+    $('#main').css({ "width": "100%" });
+    $('#game').children('.col').remove();
+    button.show();
 }

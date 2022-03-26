@@ -5,9 +5,7 @@ const VERSION: Player["VERSION"] = {
     name: "Indev",
 }
 import './typingdeclarations.js'
-//tslint:disable-next-line
 let saveTimeout: number
-//tslint:disable-next-line
 let updateInterval: number
 let popupNumber = 0
 let updateDateCheck: number

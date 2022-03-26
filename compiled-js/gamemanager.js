@@ -5,9 +5,7 @@ const VERSION = {
     name: "Indev",
 };
 import './typingdeclarations.js';
-//tslint:disable-next-line
 let saveTimeout;
-//tslint:disable-next-line
 let updateInterval;
 let popupNumber = 0;
 let updateDateCheck;

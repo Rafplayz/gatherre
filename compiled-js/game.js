@@ -3,8 +3,8 @@ window.onerror = function (error) {
 };
 // imports
 import * as gm from './gamemanager.js';
-import { TimedButton } from './classes/TimedButton.js';
-import 'onload.js';
+import TimedButton from './classes/TimedButton.js';
+import './onload.js';
 // globals
 const PLAYER = gm.load();
 // game manager initialization

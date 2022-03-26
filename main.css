@@ -4,18 +4,66 @@
     --min-height-button: 50px;
     --min-width-button: 70px;
     --error: rgb(140,50,50);
+    --light-bg: rgb(45, 45, 53);
     font-family:'Roboto', sans-serif !important;
 }
 * {
+    text-align:center;
     color: lightgray;
     overflow-y: hidden;
+}
+#main, #game {
+    --height: calc(100% - 114px);
+    height: var(--height);
+    min-height: var(--height);
+    max-height: var(--height);
+}
+#main {
+    --height: 100%;
+}
+.col {
+    --height: calc(100% - 114px);
+    min-width: 49.5%;
+    max-width: 50%;
+    width: 49.5%;
+    height: var(--height);
+    min-height: var(--height);
+    column-span: 1;
+    position: absolute;
+    overflow-y: auto;
+    overflow-x: auto;
+    transition-duration: 0s;
+    border-left: 6px solid var(--light-bg);
+}
+.col.right {
+    border-left-width: 0.5%;
+    right: 0;
+    top: 0;
+}
+.settings {
+    max-width: 64px;
+    max-height: 64px;
+    min-width: 32px;
+    min-height: 32px;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    background-color: rgba(0,0,0,0);
+    border: none;
+    float: right;
+}
+.settings img {
+    display: block;
+    height: 100%;  
+    width: 100%;
 }
 .bordered {
     border-radius: 10px;
     border-color: black;
     border-width: 3px;
 }
-body {
+html, body {
+    margin: 0;
+    height: 100%;
     background-color: var(--background);
 }
 .dangerous {
@@ -28,8 +76,6 @@ body {
     font-size: large;
 }
 footer {
-    min-height: 80px;
-    max-height: none;
     background-color: rgb(45, 45, 53);
     border-top: 1px solid rgb(120, 120, 134);
     position: absolute;

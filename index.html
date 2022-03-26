@@ -1,26 +1,39 @@
 <!DOCTYPE html>
+
 <head>
     <title>Gatherre</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="./compiled-js/game.js" type="module" defer></script>
     <link href="main.css" rel="stylesheet">
-    <link href="burger.png" rel="icon" sizes="20x20" type="image/png">
+    <link href="imgs/burger.png" rel="icon" sizes="20x20" type="image/png">
 
 </head>
+
 <body>
-    <div class="popupContainer"></div>
-    <button class="dangerous bordered" id="wipesave">Wipe save data</button>
-    <div id="numbers">
-        <p class="Berry number" id="Berry">loading..</p>
-        <p class="Stick number" id="Stick">loading..</p>
+    <div id="game">
+        <div class="separator" style="display:none"></div>
+        <div id="main">
+            <button id="settings" class="settings">
+                <img src="imgs/settings.png" alt="settings">
+                <!--<img src="https://www.flaticon.com/free-icons/cog" title="cog icons">Cog icons created by Tanah Basah - Flaticon</a> -->
+            </button>
+            <div class="popupContainer"></div>
+            <button class="dangerous bordered" id="wipesave">Wipe save data</button>
+            <div id="numbers">
+                <p class="Berry number" id="Berry">loading..</p>
+                <p class="Stick number" id="Stick">loading..</p>
+            </div>
+            
+        </div>
+        <footer>
+                <div class="buttonBar">
+                    <div class="buttonContainer">
+                        <button class="button" id="gatherButton">Gather (timed)</button>
+                        <div id="TimedButtonBar" class="TimedButtonBar"></div>
+                        <div class="TimedButtonBarUnderneath"></div>
+                    </div>
+                </div>
+            </footer>
+    </div>
     </div>
 </body>
-<footer>
-    <div class="buttonBar">
-        <div class="buttonContainer"> 
-            <button class="button" id="gatherButton">Gather (timed)</button>
-            <div id="TimedButtonBar" class="TimedButtonBar"></div> 
-            <div class="TimedButtonBarUnderneath"></div> 
-        </div>
-    </div>
-</footer>

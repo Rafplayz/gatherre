@@ -3,8 +3,8 @@ window.onerror = function(error) {
 }
 // imports
 import * as gm from './gamemanager.js'
-import { TimedButton } from './classes/TimedButton.js'
-import 'onload.js'
+import TimedButton from './classes/TimedButton.js'
+import './onload.js'
 // globals
 const PLAYER: Player = gm.load()
 // game manager initialization
@@ -32,7 +32,6 @@ gm.initTimeouts(
 
 
 function gatherItems(): void {
-
     // the idea is to make separate "loot tables", kind of like how in minecraft you can get emeralds and bones,
     // or emeralds and bone meals, or diamonds and bones. that's basically how it goes
     const randpool1 = Math.randInt(1,5)

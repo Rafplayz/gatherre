@@ -1,5 +1,5 @@
 import * as gm from '../gamemanager.js'
-export class Button {
+export default class Button {
     title: string
     id: string
     effect: Function

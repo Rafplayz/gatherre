@@ -114,3 +114,10 @@ export function Update(textUpdate: Function): void {
     updateDateCheck = Date.now();
     updateInterval = setTimeout(Update, 100, textUpdate);
 }
+export function colRight(): JQuery<HTMLElement> {
+    const newColumn = $('<div class="col right"></div>')
+    $('#game').append(newColumn)
+    $('#main').css({"width":"49.5%"})
+    newColumn.append($('<button id="return" class="return">←</button>'))
+    return newColumn
+}

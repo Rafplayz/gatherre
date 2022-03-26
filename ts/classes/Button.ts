@@ -1,4 +1,4 @@
-import * as gm from '../gamemanager.js'
+import * as gm from '../main/gamemanager.js'
 export default class Button {
     title: string
     id: string

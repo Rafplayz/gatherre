@@ -3,7 +3,7 @@ window.onerror = function(error) {
 }
 // imports
 import * as gm from './gamemanager.js'
-import TimedButton from './classes/TimedButton.js'
+import TimedButton from '../classes/TimedButton.js'
 import './onload.js'
 // globals
 const PLAYER: Player = gm.load()

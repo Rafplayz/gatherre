@@ -85,12 +85,11 @@ export function save(player) {
     const storedPlayer = JSON.stringify(player);
     window.localStorage.setItem('player', storedPlayer);
     savePopup();
+    saveTimeout = setTimeout(save, 10000, player);
     return storedPlayer;
 }
 export function load() {
     let player;
-    const bigIntRegEx = /[0-9]+n/g;
-    const NotBigIntRegEx = /"[0-9]+n"/g;
     const localStorageVersion = localStorage.getItem('player');
     try {
         if (localStorageVersion == null || localStorageVersion == "undefined" || localStorageVersion == 'reset') {

@@ -1,4 +1,4 @@
-import * as gm from './gamemanager.js'
+import * as gm from '../gamemanager.js'
 import {Button} from './Button.js'
 export class TimedButton extends Button {
     timer: number

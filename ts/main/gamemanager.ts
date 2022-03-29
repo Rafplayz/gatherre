@@ -1,3 +1,5 @@
+// modify below version counter if changes are made to the Player
+// interface in index.d.ts
 const VERSION: Player["VERSION"] = {
     number: "0.0.0",
     isBeta: false,

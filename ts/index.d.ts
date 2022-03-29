@@ -14,13 +14,13 @@ declare global {
             name?: string
         }
         v: {
-            berries: {
-                v: bigint;
-            }
-            sticks: {
-                v: bigint;
-            }
+            berries: Value<bigint>
+            sticks: Value<bigint>
         }
         
     }
+}
+// easier to expand upon later
+interface Value<T> {
+    v: T
 }

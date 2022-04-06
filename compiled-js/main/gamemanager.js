@@ -85,7 +85,7 @@ export function load() {
             player = getInitialPlayer();
             return player;
         }
-        player = JSON.parse(localStorageVersion, (key, value) => {
+        player = JSON.parse(localStorageVersion, (_key, value) => {
             if (typeof value === 'string' && /^\d+n$/.test(value)) {
                 return BigInt(value.slice(0, -1));
             }

@@ -1,10 +1,11 @@
-window.onerror = function(error) {
-    gm.errorPopup(<string>error)
-}
 // imports
 import * as gm from './gamemanager.js'
 import TimedButton from '../classes/TimedButton.js'
 import './onload.js'
+import * as e from 'elements.js'
+window.onerror = function(error) {
+    gm.errorPopup(<string>error)
+}
 // globals
 const PLAYER: Player = gm.load()
 // game manager initialization
@@ -23,8 +24,8 @@ $("#wipesave").on("click",clearSave)
 gm.initTimeouts(
     {func: gm.save,time: 14000,param: PLAYER},
     {func: gm.Update,time: 100,param: () => {
-        $("#Berry").text(`Berries: ${PLAYER.v.berries.v}`)
-        $("#Stick").text(`Sticks: ${PLAYER.v.sticks.v}`)
+        e.UIElements.numbers.berry.text(`Berries: ${PLAYER.v.berries.v}`)
+        e.UIElements.numbers.berry.text(`Sticks: ${PLAYER.v.sticks.v}`)
     }}
 )
 

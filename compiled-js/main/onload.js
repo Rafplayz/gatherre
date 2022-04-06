@@ -1,8 +1,8 @@
 // import all from elements and gamemanager
 import * as e from './elements.js';
 import * as gm from './gamemanager.js';
-e.settingsbutton.on("click", (event) => {
+e.Buttons.settings.on("click", (event) => {
     event.preventDefault();
-    gm.colRight(e.settingsbutton)
+    gm.colRight(e.Buttons.settings)
         .append('<p>Hello World</p>');
 });
